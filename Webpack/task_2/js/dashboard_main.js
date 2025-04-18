@@ -5,6 +5,7 @@ import logoImage from '../assets/holberton-logo.jpg';
 
 // Ajout du logo
 $('body').append('<div id="logo"></div>');
+$('#logo').css('background-image', `url(${logoImage})`);
 
 // Ajout des éléments au body
 $('body').append('<p>Holberton Dashboard</p>');
