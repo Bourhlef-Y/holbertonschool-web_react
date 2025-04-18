@@ -1,11 +1,11 @@
 {
-  "name": "task_2",
+  "name": "task_1",
   "version": "1.0.0",
-  "description": "Webpack task with CSS and images",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
@@ -15,11 +15,11 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "css-loader": "^6.8.1",
+    "css-loader": "^7.1.2",
     "file-loader": "^6.2.0",
-    "image-webpack-loader": "^8.1.0",
-    "style-loader": "^3.3.3",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "image-webpack-loader": "^8.0.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.99.5",
+    "webpack-cli": "^6.0.1"
   }
-} 
+}
