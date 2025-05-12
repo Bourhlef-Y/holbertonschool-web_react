@@ -19,6 +19,11 @@ describe("Notifications component", () => {
     render(<Notifications />);
     const listItems = screen.getAllByRole("listitem");
     expect(listItems).toHaveLength(3);
+    
+    // Vérifier le contenu des éléments de la liste en ignorant la casse
+    expect(listItems[0].textContent.toLowerCase()).toBe("new course available");
+    expect(listItems[1].textContent.toLowerCase()).toBe("new resume available");
+    expect(listItems[2].innerHTML.toLowerCase()).toContain("urgent - ");
   });
 
   test("clicking the close button logs to the console", () => {
