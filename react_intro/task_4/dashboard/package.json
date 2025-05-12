@@ -3,7 +3,7 @@
   "private": false,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://TarekzainAldin.github.io/holbertonschool-web_react",
+  "homepage": "https://Bourhlef-Y.github.io/holbertonschool-web_react",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
