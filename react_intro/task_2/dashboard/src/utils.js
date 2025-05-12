@@ -3,13 +3,8 @@ export function getCurrentYear() {
 }
 
 export function getFooterCopy(isIndex) {
-  if (isIndex) {
-    return 'Holberton School';
-  } else {
-    return 'Holberton School main dashboard';  // يجب أن تُرجع هذه القيمة عند `false`
-  }
+  return isIndex ? "holberton School" : "Holberton School main dashboard";
 }
-
 
 export function getLatestNotification() {
   return "<strong>Urgent requirement</strong> - complete by EOD";

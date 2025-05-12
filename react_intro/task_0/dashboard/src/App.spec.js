@@ -4,7 +4,7 @@ import App from './App';
 
 describe('App component', () => {
   test('renders the main heading', () => {
-    render(<App />);
+    const { container } = render(<App />);
     const heading = screen.getByRole('heading', {
       level: 1,
       name: /school dashboard/i,
