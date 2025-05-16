@@ -1,13 +1,6 @@
 .App-header {
-  text-align: center;
-  background-color: #4caf50;
-  padding: 20px;
-}
-
-.App-header img {
-  width: 150px;
-}
-
-.App-header h1 {
-  color: white;
-}
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #e1003c;
+} 

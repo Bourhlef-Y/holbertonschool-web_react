@@ -1,20 +1,5 @@
-.App-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #e1003c;
-}
+/* Suppression du style App-header qui a été déplacé vers Header.css */
 
-.App-body {
-  padding: 2rem;
-}
+/* Suppression du style App-body qui a été déplacé vers Login.css */
 
-.App-footer {
-  padding: 1rem;
-  border-top: 1px solid #ccc;
-  text-align: center;
-  font-style: italic;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
-}
+/* Suppression du style App-footer qui a été déplacé vers Footer.css */

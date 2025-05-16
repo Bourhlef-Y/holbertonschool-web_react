@@ -1,12 +1,21 @@
 .App-body {
-  text-align: center;
+  padding: 2rem;
 }
 
-input {
-  margin: 5px;
-  padding: 10px;
+.input-group {
+  margin-bottom: 1rem;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+label {
+  margin-right: 0.5rem;
 }
 
 button {
-  padding: 10px;
-}
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 0.3rem 0.5rem;
+  cursor: pointer;
+} 
