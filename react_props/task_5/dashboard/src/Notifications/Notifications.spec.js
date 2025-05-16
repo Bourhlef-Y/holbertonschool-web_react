@@ -2,6 +2,47 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import Notifications from "./Notifications";
 import { getLatestNotification } from "../utils/utils.js";
 
+describe("Notifications component", () => {
+  const notifications = [
+    { id: 1, type: "default", value: "New course available" },
+    { id: 2, type: "urgent", value: "New resume available" },
+    { id: 3, type: "urgent", html: { __html: "Test HTML" } },
+  ];
+
+  test("always displays 'Your notifications'", () => {
+    render(<Notifications displayDrawer={false} />);
+    expect(screen.getByText("Your notifications")).toBeInTheDocument();
+  });
+
+  describe("when displayDrawer is false", () => {
+    test("does not display notifications content", () => {
+      render(<Notifications displayDrawer={false} notifications={notifications} />);
+      
+      expect(screen.queryByText("Here is the list of notifications")).not.toBeInTheDocument();
+      expect(screen.queryByRole("button", { name: /close/i })).not.toBeInTheDocument();
+      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    });
+  });
+
+  describe("when displayDrawer is true", () => {
+    test("displays notifications content with items", () => {
+      render(<Notifications displayDrawer={true} notifications={notifications} />);
+      
+      expect(screen.getByText("Here is the list of notifications")).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /close/i })).toBeInTheDocument();
+      expect(screen.getByRole("list")).toBeInTheDocument();
+    });
+
+    test("displays 'No new notification for now' when notifications array is empty", () => {
+      render(<Notifications displayDrawer={true} notifications={[]} />);
+      
+      expect(screen.getByText("No new notification for now")).toBeInTheDocument();
+      expect(screen.queryByText("Here is the list of notifications")).not.toBeInTheDocument();
+      expect(screen.queryByRole("list")).not.toBeInTheDocument();
+    });
+  });
+});
+
 describe('Notifications', () => {
   const mockNotifications = [
     { id: 1, type: 'default', value: 'New course available' },

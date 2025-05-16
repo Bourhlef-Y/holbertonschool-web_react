@@ -1,39 +1,49 @@
+import React from 'react';
 import './Notifications.css'
-import closebtn from '../assets/close-button.png'
+import closeIcon from '../assets/close-icon.png'
 import NotificationItem from './NotificationItem';
 
-export default function Notifications({ notifications, displayDrawer=true }) {
+export default function Notifications({ displayDrawer = false, notifications = [] }) {
   return (
     <>
-      <div className='notifications-title'>
+      <div className="menuItem">
         <p>Your notifications</p>
       </div>
-        {displayDrawer ? (
-          <div className="notifications">
-            {notifications.length > 0 ? (
-              <>
+      {displayDrawer && (
+        <div className="Notifications">
+          <button
+            style={{
+              position: 'absolute',
+              right: '1rem',
+              top: '1rem',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+            aria-label="Close"
+            onClick={() => console.log('Close button has been clicked')}
+          >
+            <img src={closeIcon} alt="Close" width="10px" />
+          </button>
+          {notifications.length === 0 ? (
+            <p>No new notification for now</p>
+          ) : (
+            <>
               <p>Here is the list of notifications</p>
-              <button
-              onClick={() => console.log('Close button has been clicked')} aria-label="Close">
-              <img src={closebtn} alt='CLose' />
-              </button>
               <ul>
-                  {notifications.map((notification) => (
-                    <NotificationItem
-                      key={notification.id}
-                      type={notification.type}
-                      value={notification.value}
-                      html={notification.html} />
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <p>No new notification for now</p>
-              )}
-          </div>
-        ) : (
-          <></>
-        )}
+                {notifications.map(({ id, type, value, html }) => (
+                  <NotificationItem
+                    key={id}
+                    type={type}
+                    value={value}
+                    html={html}
+                  />
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      )}
     </>
   );
 }

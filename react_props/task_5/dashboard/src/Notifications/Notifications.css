@@ -1,51 +1,67 @@
-/* Conteneur toujours visible */
-.notifications-title {
-  font-weight: bold;
-  font-size: 16px;
-  padding: 10px;
+/* Style de base pour le menu et les notifications */
+.menuItem {
+  text-align: right;
+  margin: 1rem;
 }
 
-/* Conteneur des notifications, visible seulement si displayDrawer est true */
-.notifications {
-  border: 2px dashed red;
-  padding: 10px;
-  margin: 10px;
-  position: relative;
-  background-color: #fff;
+.Notifications {
+  border: 2px dashed #e1003c;
+  padding: 1rem;
+  margin: 1rem;
+  background: white;
+  position: absolute;
+  right: 0;
+  width: 35%;
 }
 
-/* Paragraphe descriptif */
-.notifications p {
-  margin: 0 0 10px 0;
-}
-
-/* Liste */
-.notifications ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Notification par priorité */
-.notifications li[data-notification-type="default"] {
-  color: blue;
-}
-
-.notifications li[data-notification-type="urgent"] {
-  color: red;
-}
-
-/* Bouton de fermeture */
-.notifications button {
+/* Style pour le bouton de fermeture */
+.Notifications button {
   background: none;
   border: none;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  right: 1rem;
+  top: 1rem;
   cursor: pointer;
 }
 
-.notifications button img {
+.Notifications button img {
   width: 10px;
   height: 10px;
+}
+
+/* Style pour la liste des notifications */
+.Notifications ul {
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.Notifications li {
+  margin-bottom: 0.5rem;
+  list-style-type: none;
+}
+
+/* Styles pour les types de notifications */
+[data-notification-type="default"] {
+  color: blue;
+}
+
+[data-notification-type="urgent"] {
+  color: red;
+}
+
+/* Style pour le message quand il n'y a pas de notifications */
+.Notifications p {
+  margin: 0;
+  margin-bottom: 0.5rem;
+}
+
+/* Ajustements pour le responsive */
+@media screen and (max-width: 900px) {
+  .Notifications {
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+    font-size: 20px;
+    position: relative;
+  }
 }
