@@ -15,7 +15,7 @@
 
 ## Learning Objectives
 
-At the end of this project, you are expected to be able to [explain to anyone](/rltoken/wk6j6nYuf2em3Yql6PTQIw "explain to anyone"), **without the help of Google**:
+At the end of this project, you are expected to be able to [explain to anyone](/rltoken/Xw-423x8IbbWM7na9p7ncA "explain to anyone"), **without the help of Google**:
 
 *   When to use a Class or a function to create a component
 *   The lifecycle of a Class component
@@ -49,7 +49,7 @@ Start this project with the files from the last task of the `React Props` projec
 *   The console in your browser should not show any errors or warnings.
 *   No lint errors should be present.
 
-  
+
 
 ### 2.
 
@@ -80,7 +80,7 @@ In the `App.spec.js` test file:
 *   Reloading the App component should still display the same page as in the last task.
 *   No lint errors should be present.
 
-  
+
 
 ### 3.
 
@@ -100,14 +100,14 @@ In the `NotificationItem` Class:
 *   Make sure that the tests are still passing
 *   Modify the `li` element to call the new `markAsRead` function in response to the `onClick` event .
 
-  
+
 **Add the tests**
 
 In the `Notifications.spec.js` test file:
 
 *   Check that when simulating a click on a notification item, it logs to the console the string `Notification {id} has been marked as read`, where the id corresponds to the item clicked. (The notification id should not be zero- based)
 
-  
+
 
 In the `NotificationItem.spec.js` test file:
 
@@ -119,7 +119,7 @@ In the `NotificationItem.spec.js` test file:
 *   At this point, reloading the application should display the exact same page as in the last task. Use the React Chrome Extension to make sure that the Notifications component displays correctly.
 *   The console in your browser should not show any errors or warnings.
 
-  
+
 
 ### 4.
 
@@ -128,21 +128,21 @@ In the `NotificationItem.spec.js` test file:
 Create a new component named `BodySection`. The component does not know its children and should render the following:
 
 *   A div with the class `bodySection` containing:
-    
+
     *   An `h2` element displaying a title passed as a prop.
     *   The children of the component.
 
 Create a new component named `BodySectionWithMarginBottom.jsx`, which does not know its children and should render the following:
 
 *   A `div` with the class `bodySectionWithMargin` , that contains:
-    
+
     *   The BodySection component, passing the prop into it.
 
 Create a `BodySectionWithMarginBottom.css` file and set the following styles:
 
 *   Set the `bottom margin` of the `bodySectionWithMargin` div element to `40px`
 
-  
+
 **Tips:**
 
 Rendering the following
@@ -158,7 +158,7 @@ Should generate:
   <p>test</p>
 </div>
 ```
-  
+
 
 **Tests:**
 
@@ -167,14 +167,14 @@ Create a `BodySection.spec.js` file and add the following tests:
 *   Test that the BodySection component renders a heading with the title prop value.
 *   Test that the BodySection component renders any number of children passed to it.
 
-  
+
 
 Create a `BodySectionWithMarginBottom.spec.js` file and add the following tests:
 
 *   Test that the `BodySectionWithMarginBottom` component contains a div with the class bodySectionWithMargin.
 *   Test that the `BodySectionWithMarginBottom` component renders the BodySection component.
 
-  
+
 
 ### 5.
 
@@ -184,7 +184,7 @@ Create a `BodySectionWithMarginBottom.spec.js` file and add the following tests:
 *   Wrap the `Login` component with the newly created `BodySectionWithMarginBottom` component. The title should be `Log in to continue`
 *   Using the `BodySection` component, add a new block with the title `News from the School`. The component should contain a paragraph with the text: `Holberton School News goes here`
 
-  
+
 
 in `task_3/dashboard/src/App/App.spec.js`:
 
@@ -192,7 +192,7 @@ in `task_3/dashboard/src/App/App.spec.js`:
 *   Check that a title of `Log in to continue` is displayed above the `Login` component when the `isLoggedIn` prop is set to false.
 *   Add a test to check that a title with the text `News from the School`, and a paragraph element with the text `Holberton School News goes here` are displayed by default in the `App` component.
 
-  
+
 
 **Tips**:
 
@@ -203,7 +203,7 @@ in `task_3/dashboard/src/App/App.spec.js`:
 *   Make sure that the CSS is correctly applied to your component.
 *   The console in your browser should not show any errors or warnings.
 
-  
+
 
 ### 6.
 
@@ -216,16 +216,16 @@ We would like to add a way to log to the console every time a component is mount
 *   Modify the `displayName` of the HOC to always display `WithLogging(NAME_OF_THE_WRAPPED_COMPONENT)` in the React Chrome Extension or for debugging
 *   `NAME_OF_THE_WRAPPED_COMPONENT` should be the name of the wrapped component or class. If the wrapped element has no name, it should default to `Component`
 
-  
+
 
 *   Wrap the `Login` and `CourseList` components with the new HOC
 *   You should see the logs from the HOC on the console whenever the value of the `isLoggedIn` prop changes from false to true or vice versa.
 
-  
+
 
 **Add `WithLogging.spec.js`, write some tests for the HOC component:**
 
-  
+
 
 You can use this mock class component inside your test file:
 ```
@@ -252,7 +252,7 @@ class MockApp extends React.Component {
 *   Ensure your logs are properly displayed.
 *   The console in your browser should not show any errors or warnings.
 
-  
+
 
 ### 7.
 
@@ -260,7 +260,7 @@ In `NotificationItem.jsx`:
 
 Make the component pure, so it only updates with props/state change.
 
-  
+
 
 ### 8.
 
@@ -269,7 +269,7 @@ Make the component pure, so it only updates with props/state change.
 *   Modify the file so that it only updates when the length of the notification list prop changes.
 *   You must implement this logic using the `shouldComponentUpdate` lifecycle method to optimize performance.
 
-  
+
 
 **In `Notifications.spec.js`, add two checks:**
 
@@ -280,7 +280,7 @@ To achieve this, we will implement two simple tests:
 *   Check that the `Notifications` component doesn’t re-render if the length of the `notifications` prop remains the same.
 *   Check that the `Notifications` component re-renders whenever the length of the `notifications` prop changes.
 
-  
+
 
 **Requirements:**
 
