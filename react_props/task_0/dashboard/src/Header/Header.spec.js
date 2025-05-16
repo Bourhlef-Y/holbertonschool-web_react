@@ -3,16 +3,18 @@ import { render, screen } from "@testing-library/react";
 import Header from "./Header";
 
 describe("Header component", () => {
-  test("renders without crashing", () => {
+  test("renders the main heading", () => {
     render(<Header />);
-  });
-
-  test("renders the logo and the heading", () => {
-    render(<Header />);
-    const logo = screen.getByAltText("Holberton logo");
-    const heading = screen.getByRole("heading", { name: /School dashboard/i });
-    
-    expect(logo).toBeInTheDocument();
+    const heading = screen.getByRole("heading", {
+      level: 1,
+      name: /school dashboard/i,
+    });
     expect(heading).toBeInTheDocument();
   });
-}); 
+
+  test("renders the Holberton logo image", () => {
+    render(<Header />);
+    const image = screen.getByAltText(/holberton logo/i);
+    expect(image).toBeInTheDocument();
+  });
+});
