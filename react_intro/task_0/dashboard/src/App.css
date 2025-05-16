@@ -1,20 +1,24 @@
 .App-header {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  border-bottom: 4px solid #e1003c;
+}
+
+.App-header img {
+  width: 200px;
+}
+
+.App-header h1 {
   color: #e1003c;
 }
 
 .App-body {
-  padding: 2rem;
+  padding: 30px;
+  min-height: 60vh;
 }
 
 .App-footer {
-  padding: 1rem;
-  border-top: 1px solid #ccc;
+  border-top: 4px solid #e1003c;
   text-align: center;
   font-style: italic;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
 }

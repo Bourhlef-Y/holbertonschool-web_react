@@ -1,7 +1,10 @@
-export function getCurrentYear() {
-  return new Date().getFullYear();
-}
+// task_1/dashboard/src/utils.js
 
-export function getFooterCopy(isIndex) {
-  return isIndex ? "Holberton School" : "Holberton School main dashboard";
-}
+export function getCurrentYear() {
+    return new Date().getFullYear();
+  }
+  
+  export function getFooterCopy(isIndex) {
+    return isIndex ? 'Holberton School' : 'Holberton School main dashboard';
+  }
+  
