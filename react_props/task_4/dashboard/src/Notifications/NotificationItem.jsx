@@ -1,29 +1,30 @@
-// NotificationItem.jsx
-import React from 'react';
+import React from "react";
 import PropTypes from 'prop-types';
 
-const NotificationItem = ({ type, html, value }) => {
-  const style = {
-    color: type === 'urgent' ? 'red' : 'blue'
-  };
+export default function NotificationItem({ type, html, value }) {
+	const style = { color: type === 'urgent' ? 'red' : 'blue' };
+	if (html) {
+		return (
+			<li data-notification-type={type}
+			style={style}
+			dangerouslySetInnerHTML={html}></li>
+		);
+	}
+	return (
+		<li data-notification-type={type}
+		style={style}>{value}</li>
+	);
+}
 
-  if (value) {
-    return <li data-notification-type={type} style={style}>{value}</li>;
-  }
-
-  return <li data-notification-type={type} style={style} dangerouslySetInnerHTML={html}></li>;
-};
-
+// Check type of data props, raise a warning in the console if is't an invalid value
 NotificationItem.propTypes = {
-  type: PropTypes.string.isRequired,
-  html: PropTypes.shape({ __html: PropTypes.string }),
-  value: PropTypes.string
+	type: PropTypes.string.isRequired,
+	value: PropTypes.string,
+	html: PropTypes.shape({
+	  __html: PropTypes.string,
+	}),
 };
 
 NotificationItem.defaultProps = {
-  type: 'default',
-  html: null,
-  value: ''
+	type: 'default'
 };
-
-export default NotificationItem;

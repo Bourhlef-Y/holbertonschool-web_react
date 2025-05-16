@@ -1,49 +1,44 @@
-import React from "react";
-import "./Notifications.css";
-import NotificationItem from "./NotificationItem";
-import closeIcon from "../assets/close-icon.png";
+import './Notifications.css'
+import closebtn from '../assets/close-button.png'
+import NotificationItem from './NotificationItem';
 
-function Notifications({ notifications = [] }) {
+export default function Notifications({ notifications }) {
   return (
-    <div
-      className="notifications"
-      style={{
-        border: "2px dashed red",
-        padding: "10px",
-        position: "relative",
-      }}
-    >
-      <button
+    <>
+      <div className="notifications">
+        <p>
+        Here is the list of notifications
+        </p>
+        <button
         style={{
           position: "absolute",
-          top: "10px",
-          right: "10px",
+          display: "flex",
           background: "none",
-          border: "none",
-          cursor: "pointer",
+          borderStyle: "none",
+          right: "1rem",
+          top: "0.8rem",
+          width: "0.5rem",
+          height: "0.5rem",
         }}
-        aria-label="Close"
-        onClick={() => console.log("Close button has been clicked")}
-      >
-        <img
-          src={closeIcon}
-          alt="close icon"
-          style={{ height: "10px", width: "10px" }}
-        />
-      </button>
-      <p>Here is the list of notifications</p>
-      <ul>
-        {notifications.map((notification) => (
-          <NotificationItem
+        onClick={() => console.log('Close button has been clicked')} aria-label="Close">
+          <img
+          style={{
+            width: "0.5rem",
+            height: "0.5rem",
+          }}
+          src={ closebtn } alt='CLose' />
+        </button>
+        <ul>
+          {notifications.map((notification) => (
+            <NotificationItem
             key={notification.id}
             type={notification.type}
             value={notification.value}
             html={notification.html}
-          />
-        ))}
-      </ul>
-    </div>
+            />
+          ))}
+          </ul>
+      </div>
+    </>
   );
 }
-
-export default Notifications;

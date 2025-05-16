@@ -1,37 +1,52 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import CourseListRow from "./CourseListRow";
 
-describe("CourseListRow", () => {
-  it("renders one columnheader with colspan=2 when isHeader is true and textSecondCell is null", () => {
-    const { container } = render(
-      <CourseListRow isHeader={true} textFirstCell="Test" />
-    );
-    const th = container.querySelector("th");
-    expect(th).toBeInTheDocument();
-    expect(th).toHaveAttribute("colSpan", "2");
-  });
+describe('When isHeader is true', () => {
+  test('Check whether the component renders one columnheader that has the attributecolspan = 2', () => {
+    render(
+      <table>
+        <tbody>
+        <CourseListRow isHeader={true} textFirstCell="test OnlyOneCell" />
+        </tbody>
+      </table>
+  );
 
-  it("renders two <th> cells when isHeader is true and textSecondCell is provided", () => {
-    const { container } = render(
-      <CourseListRow
-        isHeader={true}
-        textFirstCell="Test"
-        textSecondCell="Value"
-      />
-    );
-    const thElements = container.querySelectorAll("th");
-    expect(thElements.length).toBe(2);
-  });
+    const cols = screen.getAllByRole('columnheader');
 
-  it("renders two <td> cells when isHeader is false", () => {
-    const { container } = render(
-      <CourseListRow
-        isHeader={false}
-        textFirstCell="Test"
-        textSecondCell="Value"
-      />
-    );
-    const tdElements = container.querySelectorAll("td");
-    expect(tdElements.length).toBe(2);
-  });
+    expect(cols).toHaveLength(1);
+    expect(cols[0]).toHaveAttribute('colspan', '2');
+  })
+  test('Check whether the component renders 2 <th> cells', () => {
+    render(
+      <table>
+        <tbody>
+        <CourseListRow isHeader={true} textFirstCell="test firstCell" textSecondCell="testSecondCell" />
+        </tbody>
+      </table>
+  );
+
+    const cols = screen.getAllByRole('columnheader');
+
+    expect(cols).toHaveLength(2);
+  })
 });
+
+describe('When isHeader is false', () => {
+  test('Check to test the component renders correctly two td elements within a tr element', () => {
+    render(
+      <table>
+        <tbody>
+        <CourseListRow isHeader={false} textFirstCell="test firstCell" textSecondCell="testSecondCell" />
+        </tbody>
+      </table>
+  );
+  const row = screen.getByRole('row');
+  const cells = screen.getAllByRole('cell');
+
+  expect(row).toBeInTheDocument();
+  expect(cells).toHaveLength(2);
+
+  expect(cells[0]).toHaveTextContent("test firstCell");
+  expect(cells[1]).toHaveTextContent("testSecondCell");
+  })
+})
