@@ -7,7 +7,7 @@ window.onload = () => {
     }
   
     const student1: Student = {
-      firstName: "Tarek",
+      firstName: "yacine",
       lastName: "ziad",
       age: 25,
       location: "syria "
