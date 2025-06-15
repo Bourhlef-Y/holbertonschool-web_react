@@ -16,13 +16,13 @@ describe("authSlice", () => {
 
   it("devrait connecter un utilisateur avec les bonnes informations", () => {
     const actionPayload = {
-      email: "tarek@example.com",
+      email: "yacine@example.com",
       password: "secure123",
     };
 
     const newState = authReducer(undefined, login(actionPayload));
 
-    expect(newState.user.email).toBe("tarek@example.com");
+    expect(newState.user.email).toBe("yacine@example.com");
     expect(newState.user.password).toBe("secure123");
     expect(newState.isLoggedIn).toBe(true);
   });
@@ -30,7 +30,7 @@ describe("authSlice", () => {
   it("devrait déconnecter un utilisateur et réinitialiser les infos", () => {
     const previousState = {
       user: {
-        email: "tarek@example.com",
+        email: "yacine@example.com",
         password: "secure123",
       },
       isLoggedIn: true,
