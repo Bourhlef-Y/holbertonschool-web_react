@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { StyleSheet, css } from "aphrodite";
 import WithLogging from "../../components/HOC/WithLogging";
 import useLogin from "../../hooks/useLogin";
@@ -30,62 +31,61 @@ const styles = StyleSheet.create({
   button: {
     cursor: "pointer",
   },
+  appBody: {
+    padding: '36px 24px',
+  },
 });
 
 function Login() {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [enableSubmit, setEnableSubmit] = useState(false);
 
-  const {
-    email,
-    password,
-    enableSubmit,
-    handleChangeEmail,
-    handleChangePassword,
-    handleLoginSubmit,
-  } = useLogin({
-    onLogin: (email, password) => {
-      dispatch(login({ email, password }));
-    },
-  });
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+    setEnableSubmit(e.target.value !== '' && password !== '');
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+    setEnableSubmit(email !== '' && e.target.value !== '');
+  };
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    dispatch(login({ email, password }));
+  };
 
   return (
-    <form aria-label="form" onSubmit={handleLoginSubmit}>
-      <div className={css(styles.body)}>
-        <p className={css(styles.paragraph)}>
-          Login to access the full dashboard
-        </p>
-        <div className={css(styles.form)}>
-          <label htmlFor="email" className={css(styles.label)}>
-            Email
-          </label>
+    <div className={css(styles.appBody)}>
+      <p>Login to access the full dashboard</p>
+      <form onSubmit={handleLoginSubmit} role="form">
+        <label htmlFor="email">
+          Email:
           <input
             type="email"
-            name="email"
             id="email"
+            name="email"
+            className={css(styles.input)}
             value={email}
             onChange={handleChangeEmail}
-            className={css(styles.input)}
           />
-          <label htmlFor="password" className={css(styles.label)}>
-            Password
-          </label>
+        </label>
+        <label htmlFor="password">
+          Password:
           <input
             type="password"
-            name="password"
             id="password"
+            name="password"
+            className={css(styles.input)}
             value={password}
             onChange={handleChangePassword}
-            className={css(styles.input)}
           />
-          <input
-            type="submit"
-            value="OK"
-            disabled={!enableSubmit}
-            className={css(styles.button)}
-          />
-        </div>
-      </div>
-    </form>
+        </label>
+        <input type="submit" value="OK" disabled={!enableSubmit} />
+      </form>
+    </div>
   );
 }
 

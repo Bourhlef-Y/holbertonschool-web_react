@@ -33,6 +33,8 @@ import userEvent from '@testing-library/user-event';
 import App from "../App";
 import { getLatestNotification } from '../utils/utils';
 import mockAxios from 'jest-mock-axios';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 jest.mock('axios', () => require('jest-mock-axios').default);
 
@@ -764,4 +766,39 @@ describe('App Component Performance with useCallback', () => {
 afterAll(() => {
     console.error = originalError;
     console.warn = originalWarn;
+});
+
+const mockStore = configureStore([]);
+
+describe('App Component', () => {
+  it('renders Login component when not logged in', () => {
+    const store = mockStore({
+      auth: { isLoggedIn: false }
+    });
+
+    render(
+      <Provider store={store}>
+        <App isLoggedIn={false} />
+      </Provider>
+    );
+
+    // Verify that Login component is rendered
+    expect(screen.getByRole('form')).toBeInTheDocument();
+  });
+
+  it('renders CourseList component when logged in', () => {
+    const store = mockStore({
+      auth: { isLoggedIn: true },
+      courses: { courses: [] }
+    });
+
+    render(
+      <Provider store={store}>
+        <App isLoggedIn={true} />
+      </Provider>
+    );
+
+    // Verify that CourseList component is rendered
+    expect(screen.getByRole('table')).toBeInTheDocument();
+  });
 });

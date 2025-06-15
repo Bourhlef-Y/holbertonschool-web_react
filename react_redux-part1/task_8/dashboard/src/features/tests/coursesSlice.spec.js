@@ -1,6 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import coursesReducer, { fetchCourses } from './coursesSlice';
+import coursesReducer, { fetchCourses } from '../courses/coursesSlice';
 import { logout } from '../auth/authSlice';
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
 // Mock API response
 const mockCourses = [
@@ -8,13 +10,7 @@ const mockCourses = [
   { id: 2, title: 'Advanced Redux' },
 ];
 
-// Mock fetch globally
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(mockCourses),
-  })
-);
+const mockAxios = new MockAdapter(axios);
 
 describe('coursesSlice', () => {
   let store;
@@ -25,24 +21,26 @@ describe('coursesSlice', () => {
         courses: coursesReducer,
       },
     });
-    fetch.mockClear();
+    mockAxios.reset();
   });
 
   test('should return the initial state', () => {
     const state = store.getState().courses;
-    expect(state).toEqual({ courses: [] });
+    expect(state).toEqual({ courses: [], loading: false, error: null });
   });
 
   test('should fetch and store courses data', async () => {
+    mockAxios.onGet('http://localhost:5173/courses.json').reply(200, { courses: mockCourses });
+
     await store.dispatch(fetchCourses());
 
     const state = store.getState().courses;
     expect(state.courses).toEqual(mockCourses);
-    expect(fetch).toHaveBeenCalledWith('http://localhost:5173/courses.json');
   });
 
   test('should reset courses state on logout', async () => {
     // First fetch courses
+    mockAxios.onGet('http://localhost:5173/courses.json').reply(200, { courses: mockCourses });
     await store.dispatch(fetchCourses());
 
     // Confirm data is loaded
@@ -52,6 +50,6 @@ describe('coursesSlice', () => {
     store.dispatch(logout());
 
     // Expect state reset
-    expect(store.getState().courses).toEqual({ courses: [] });
+    expect(store.getState().courses).toEqual({ courses: [], loading: false, error: null });
   });
 });

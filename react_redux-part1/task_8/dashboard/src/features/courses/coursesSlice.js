@@ -7,34 +7,46 @@ const ENDPOINTS = {
   courses: `${API_BASE_URL}/courses.json`,
 };
 
-const initialState = {
-  courses: [],
-};
-
-const fetchCourses = createAsyncThunk(
+// Async thunk for fetching courses
+export const fetchCourses = createAsyncThunk(
   "courses/fetchCourses",
-  async (_, thunkAPI) => {
-    try {
-      const response = await axios.get(ENDPOINTS.courses);
-      return response.data.courses;
-    } catch (error) {
-      return thunkAPI.rejectWithValue("Error fetching courses");
-    }
+  async () => {
+    const response = await axios.get(ENDPOINTS.courses);
+    return response.data.courses || [];
   }
 );
+
+const initialState = {
+  courses: [],
+  loading: false,
+  error: null,
+};
 
 const coursesSlice = createSlice({
   name: "courses",
   initialState,
-  reducers: {},
+  reducers: {
+    resetCourses: (state) => {
+      state.courses = [];
+    },
+  },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchCourses.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
       .addCase(fetchCourses.fulfilled, (state, action) => {
+        state.loading = false;
         state.courses = action.payload;
+      })
+      .addCase(fetchCourses.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
       })
       .addCase(logout, () => initialState);
   },
 });
 
-export { fetchCourses };
+export const { resetCourses } = coursesSlice.actions;
 export default coursesSlice.reducer;

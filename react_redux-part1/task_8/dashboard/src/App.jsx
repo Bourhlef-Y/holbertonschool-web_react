@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Login from './components/Login/Login';
-import CourseList from './components/CourseList/CourseList';
+import Login from './pages/Login/Login';
+import CourseList from './pages/CourseList/CourseList';
 
 function App({ isLoggedIn: isLoggedInProp }) {
   const isLoggedInRedux = useSelector((state) => state.auth.isLoggedIn);
