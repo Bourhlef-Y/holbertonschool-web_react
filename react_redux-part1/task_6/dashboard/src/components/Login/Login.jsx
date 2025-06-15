@@ -33,7 +33,7 @@ function Login() {
   return (
     <div className={css(styles.appBody)}>
       <p>Login to access the full dashboard</p>
-      <form onSubmit={handleLoginSubmit}>
+      <form onSubmit={handleLoginSubmit} role="form">
         <label htmlFor="email">
           Email:
           <input

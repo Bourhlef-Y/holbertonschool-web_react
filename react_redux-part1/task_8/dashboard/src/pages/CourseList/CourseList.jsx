@@ -14,7 +14,7 @@ function CourseList() {
 
   return (
     <div>
-      <table id="CourseList">
+      <table id="CourseList" role="table">
         <thead>
           {courses.length > 0 ? (
             <>
